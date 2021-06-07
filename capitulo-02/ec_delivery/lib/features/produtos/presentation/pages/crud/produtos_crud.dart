@@ -1,70 +1,31 @@
+import 'package:ec_delivery/features/produtos/presentation/components/crud/produtos_form.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class ProdutosCRUDPage extends StatelessWidget {
+  var appBar = AppBar(title: Text('Dados do Produto'));
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
-    var appBar2 = AppBar(title: Text('Dados do Produto'));
     return Scaffold(
-      appBar: appBar2,
+      appBar: appBar,
       body: SingleChildScrollView(
-        physics: AlwaysScrollableScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Container(
-            height: MediaQuery.of(context).size.height -
-                (MediaQuery.of(context).viewPadding.bottom +
-                    MediaQuery.of(context).viewPadding.top +
-                    appBar2.preferredSize.height),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        decoration: InputDecoration(labelText: 'Nome'),
-                      ),
-                      TextFormField(
-                        decoration: InputDecoration(labelText: 'Descrição'),
-                      ),
-                      TextFormField(
-                        decoration: InputDecoration(labelText: 'Valor'),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  width: 200,
-                  height: 200,
-                  child: Stack(
-                    // alignment: Alignment.bottomRight,
-                    children: [
-                      FlutterLogo(
-                        size: 200,
-                      ),
-                      Align(
-                        alignment: Alignment.bottomRight,
-                        child: Icon(
-                          Icons.photo_camera,
-                          size: 48,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                ConstrainedBox(
-                  constraints: BoxConstraints.tightFor(width: 200),
-                  child: ElevatedButton.icon(
-                    icon: Icon(Icons.save),
-                    label: Text('Gravar'),
-                    onPressed: () {},
-                  ),
-                ),
-              ],
-            ),
+            height: _getHeigthOfVisibleScreen(context),
+            child: ProdutosFormWidget(),
           ),
         ),
       ),
     );
+  }
+
+  double _getHeigthOfVisibleScreen(BuildContext context) {
+    return MediaQuery.of(context).size.height -
+        (MediaQuery.of(context).viewPadding.bottom +
+            MediaQuery.of(context).viewPadding.top +
+            appBar.preferredSize.height);
   }
 }
