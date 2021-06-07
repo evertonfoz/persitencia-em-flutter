@@ -43,6 +43,10 @@ InputDecorationTheme inputDecorationTheme() {
       borderSide: BorderSide(color: kTextColor),
     ),
     border: UnderlineInputBorder(),
+    errorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(5),
+      borderSide: BorderSide(color: kErrorTextColor),
+    ),
   );
 }
 

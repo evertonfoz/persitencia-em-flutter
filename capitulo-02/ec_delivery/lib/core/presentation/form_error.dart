@@ -1,3 +1,4 @@
+import 'package:ec_delivery/core/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -21,9 +22,12 @@ class FormError extends StatelessWidget {
   Row formErrorText({required String error}) {
     return Row(
       children: [
-        SvgPicture.asset("assets/icons/Error.svg", height: 14, width: 14),
+        SvgPicture.asset("assets/icons/svg/error.svg", height: 14, width: 14),
         SizedBox(width: 10),
-        Text(error),
+        Text(
+          error,
+          style: TextStyle(color: kErrorTextColor.shade900),
+        ),
       ],
     );
   }

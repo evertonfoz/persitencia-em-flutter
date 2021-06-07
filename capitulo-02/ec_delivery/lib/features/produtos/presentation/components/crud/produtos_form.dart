@@ -1,31 +1,24 @@
 import 'package:ec_delivery/core/presentation/form_error.dart';
 import 'package:flutter/material.dart';
 
+import '../../constants.dart';
+
 class ProdutosFormWidget extends StatefulWidget {
-  final formKey;
-
-  const ProdutosFormWidget({required, this.formKey});
-
   @override
-  _ProdutosFormWidgetState createState() => _ProdutosFormWidgetState(
-        formKey: formKey,
-      );
+  _ProdutosFormWidgetState createState() => _ProdutosFormWidgetState();
 }
 
 class _ProdutosFormWidgetState extends State<ProdutosFormWidget> {
-  final formKey;
-
-  _ProdutosFormWidgetState({required this.formKey});
-
+  final _formKey = GlobalKey<FormState>();
   final List<String> errors = [];
-  String _nome = '';
-  String _descricao = '';
-  String _valor = '';
+  String? _nome = '';
+  String? _descricao = '';
+  String? _valor = '';
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: formKey,
+      key: _formKey,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -60,7 +53,13 @@ class _ProdutosFormWidgetState extends State<ProdutosFormWidget> {
             child: ElevatedButton.icon(
               icon: Icon(Icons.save),
               label: Text('Gravar'),
-              onPressed: () {},
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  print('OK');
+                } else {
+                  print('ERROR');
+                }
+              },
             ),
           ),
           SizedBox(height: 20),
@@ -93,7 +92,31 @@ class _ProdutosFormWidgetState extends State<ProdutosFormWidget> {
       children: [
         SizedBox(height: 20),
         TextFormField(
-          decoration: InputDecoration(labelText: 'Nome'),
+          onSaved: (newValue) => _nome = newValue,
+          onChanged: (value) {
+            if (value.isNotEmpty) {
+              removeError(error: kNomeNullError);
+            }
+            return null;
+          },
+          validator: (value) {
+            if (value!.isEmpty) {
+              addError(error: kNomeNullError);
+              return '';
+            }
+            return null;
+          },
+          textAlign: TextAlign.left,
+          decoration: InputDecoration(
+            // icon: Icon(Icons.ac_unit),
+            // prefix: Icon(Icons.baby_changing_station),
+            // prefixIcon: Icon(Icons.cabin),
+            prefixText: '  ',
+            labelText: 'Nome',
+            hintText: 'Informe o nome',
+            // contentPadding: EdgeInsets.only(left: 10),
+            // isDense: true,
+          ),
         ),
         SizedBox(height: 10),
         TextFormField(

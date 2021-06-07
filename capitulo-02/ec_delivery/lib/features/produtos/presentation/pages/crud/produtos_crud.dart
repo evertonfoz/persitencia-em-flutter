@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class ProdutosCRUDPage extends StatelessWidget {
   var appBar = AppBar(title: Text('Dados do Produto'));
-  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
