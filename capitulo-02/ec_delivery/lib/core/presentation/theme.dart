@@ -31,19 +31,19 @@ InputDecorationTheme inputDecorationTheme() {
   // );
   return InputDecorationTheme(
     floatingLabelBehavior: FloatingLabelBehavior.auto,
+    errorStyle: TextStyle(height: 0),
     labelStyle: TextStyle(
       color: kLabelTextColor.shade200,
     ),
-
-    // hintStyle: TextStyle(color: Colors.red),
-    // contentPadding: EdgeInsets.symmetric(horizontal: 42, vertical: 20),
-    // enabledBorder: outlineInputBorder,
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(5),
       borderSide: BorderSide(color: kTextColor),
     ),
     border: UnderlineInputBorder(),
-    errorBorder: OutlineInputBorder(
+    // errorBorder: UnderlineInputBorder(
+    //   borderSide: BorderSide(color: Colors.black),
+    // ),
+    focusedErrorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(5),
       borderSide: BorderSide(color: kErrorTextColor),
     ),

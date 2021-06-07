@@ -1,3 +1,4 @@
+import 'package:ec_delivery/core/presentation/components/textformfield.dart';
 import 'package:ec_delivery/core/presentation/form_error.dart';
 import 'package:flutter/material.dart';
 
@@ -28,20 +29,6 @@ class _ProdutosFormWidgetState extends State<ProdutosFormWidget> {
         ],
       ),
     );
-  }
-
-  void addError({required String error}) {
-    if (!errors.contains(error))
-      setState(() {
-        errors.add(error);
-      });
-  }
-
-  void removeError({required String error}) {
-    if (errors.contains(error))
-      setState(() {
-        errors.remove(error);
-      });
   }
 
   _buildButtonsContainer() {
@@ -91,44 +78,49 @@ class _ProdutosFormWidgetState extends State<ProdutosFormWidget> {
     return Column(
       children: [
         SizedBox(height: 20),
-        TextFormField(
+        TextFormFieldECD(
           onSaved: (newValue) => _nome = newValue,
-          onChanged: (value) {
-            if (value.isNotEmpty) {
-              removeError(error: kNomeNullError);
-            }
-            return null;
-          },
-          validator: (value) {
-            if (value!.isEmpty) {
-              addError(error: kNomeNullError);
-              return '';
-            }
-            return null;
-          },
-          textAlign: TextAlign.left,
-          decoration: InputDecoration(
-            // icon: Icon(Icons.ac_unit),
-            // prefix: Icon(Icons.baby_changing_station),
-            // prefixIcon: Icon(Icons.cabin),
-            prefixText: '  ',
-            labelText: 'Nome',
-            hintText: 'Informe o nome',
-            // contentPadding: EdgeInsets.only(left: 10),
-            // isDense: true,
-          ),
+          removeError: () => removeError(error: kNomeNullError),
+          addError: () => addError(error: kNomeNullError),
+          labelText: 'Nome',
+          hintText: 'Informe o nome',
+          hasError: errors.contains(kNomeNullError),
         ),
         SizedBox(height: 10),
-        TextFormField(
-          decoration: InputDecoration(labelText: 'Descrição'),
+        TextFormFieldECD(
+          onSaved: (newValue) => _descricao = newValue,
+          removeError: () => removeError(error: kDescricaoNullError),
+          addError: () => addError(error: kDescricaoNullError),
+          labelText: 'Descrição',
+          hintText: 'Informe a descrição',
+          hasError: errors.contains(kDescricaoNullError),
         ),
         SizedBox(height: 10),
-        TextFormField(
-          decoration: InputDecoration(labelText: 'Valor'),
+        TextFormFieldECD(
+          onSaved: (newValue) => _valor = newValue,
+          removeError: () => removeError(error: kValorNullError),
+          addError: () => addError(error: kValorNullError),
+          labelText: 'Valor',
+          hintText: 'Informe o valor',
+          hasError: errors.contains(kValorNullError),
         ),
         SizedBox(height: 10),
-        FormError(errors: errors),
+        SizedBox(height: 60, child: FormError(errors: errors)),
       ],
     );
+  }
+
+  void addError({required String error}) {
+    if (!errors.contains(error))
+      setState(() {
+        errors.add(error);
+      });
+  }
+
+  void removeError({required String error}) {
+    if (errors.contains(error))
+      setState(() {
+        errors.remove(error);
+      });
   }
 }
