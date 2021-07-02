@@ -1,4 +1,4 @@
-import 'package:ec_delivery/features/produtos/presentation/components/crud/produtos_form.dart';
+import 'package:ec_delivery/features/produtos/presentation/components/crud/form.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable

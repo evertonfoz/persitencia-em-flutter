@@ -24,29 +24,33 @@ AppBarTheme appBarTheme() {
 }
 
 InputDecorationTheme inputDecorationTheme() {
-  // OutlineInputBorder outlineInputBorder = OutlineInputBorder(
-  //   borderRadius: BorderRadius.circular(28),
-  //   borderSide: BorderSide(color: kTextColor),
-  //   gapPadding: 10,
-  // );
   return InputDecorationTheme(
-    floatingLabelBehavior: FloatingLabelBehavior.auto,
-    errorStyle: TextStyle(height: 0),
-    labelStyle: TextStyle(
-      color: kLabelTextColor.shade200,
-    ),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(5),
-      borderSide: BorderSide(color: kTextColor),
+      borderSide: BorderSide(color: kFocusedTextBorderColor),
     ),
-    border: UnderlineInputBorder(),
-    // errorBorder: UnderlineInputBorder(
-    //   borderSide: BorderSide(color: Colors.black),
+    // border: OutlineInputBorder(
+    //   borderRadius: BorderRadius.circular(6),
+    //   borderSide: BorderSide(color: kTextBorderColor),
     // ),
-    focusedErrorBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(5),
-      borderSide: BorderSide(color: kErrorTextColor),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(6),
+      borderSide: BorderSide(color: kEnabledTextBorderColor),
     ),
+    // focusedErrorBorder: OutlineInputBorder(
+    //   borderRadius: BorderRadius.circular(5),
+    //   borderSide: BorderSide(
+    //     color: kFocusedErrorTextBorderColor,
+    //     width: 2,
+    //   ),
+    // ),
+    // errorBorder: OutlineInputBorder(
+    //   borderRadius: BorderRadius.circular(5),
+    //   borderSide: BorderSide(
+    //     color: kErrorTextBorderColor,
+    //     width: 2,
+    //   ),
+    // ),
   );
 }
 
