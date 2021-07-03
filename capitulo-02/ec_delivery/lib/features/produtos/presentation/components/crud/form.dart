@@ -1,3 +1,4 @@
+import 'package:ec_delivery/features/produtos/presentation/components/crud/button.dart';
 import 'package:ec_delivery/features/produtos/presentation/components/crud/photo.dart';
 import 'package:ec_delivery/features/produtos/presentation/components/crud/textformfield.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,8 @@ class ProdutosFormWidget extends StatelessWidget {
           ),
           SizedBox(height: 20),
           PhotoProdutoWidget(),
+          SizedBox(height: 20),
+          GravarProdutoButton(),
         ],
       ),
     );
