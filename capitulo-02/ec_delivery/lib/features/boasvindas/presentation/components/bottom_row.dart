@@ -1,3 +1,5 @@
+import 'package:ec_delivery/features/boasvindas/data/datasources/boasvindas_datasource.dart';
+import 'package:ec_delivery/features/produtos/presentation/pages/crud.dart';
 import 'package:ec_delivery/shared/presentation/components/buttons/default_text_button.dart';
 import 'package:ec_delivery/shared/presentation/components/checkbox/checkbox.dart';
 import 'package:flutter/material.dart';
@@ -20,13 +22,15 @@ class BottomRowBoasVindasWidget extends StatelessWidget {
           text: 'Avançar',
           textFontSize: 24,
           onPressed: () async {
-            // var sp = await SharedPreferences.getInstance();
-            // var ds = WelcomeDataSource(sharedPreferences: sp);
+            await BoasVindasDataSource.registerDontShowAgain(
+                value: _checkedBoxValue);
 
-            // await ds.registerDontShowAgain(value: _checkedBoxValue);
-
-            // Navigator.pushReplacement(context,
-            //     MaterialPageRoute(builder: (context) => ProdutoCRUDPage()));
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ProdutosCRUDPage(),
+              ),
+            );
           },
         ),
       ],
