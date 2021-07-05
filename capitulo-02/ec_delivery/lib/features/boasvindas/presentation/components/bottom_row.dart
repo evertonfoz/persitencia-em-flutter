@@ -1,5 +1,5 @@
 import 'package:ec_delivery/shared/presentation/components/buttons/default_text_button.dart';
-import 'package:ec_delivery/shared/presentation/components/checkedbox/checkedbox.dart';
+import 'package:ec_delivery/shared/presentation/components/checkbox/checkbox.dart';
 import 'package:flutter/material.dart';
 
 class BottomRowBoasVindasWidget extends StatelessWidget {
@@ -10,9 +10,9 @@ class BottomRowBoasVindasWidget extends StatelessWidget {
       children: [
         CheckBoxWidget(
           text: 'Não exibir mais',
-          onChanged: (value) {
-            // _checkedBoxValue = value;
-          },
+          // onChanged: (value) {
+          //   // _checkedBoxValue = value;
+          // },
         ),
         DefaultTextButton(
           text: 'Avançar',
