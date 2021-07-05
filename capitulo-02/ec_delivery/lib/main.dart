@@ -5,9 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 void main() {
-  // SystemChrome.setSystemUIOverlayStyle(
-  //   SystemUiOverlayStyle(statusBarColor: Colors.transparent),
-  // );
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+  );
 
   runApp(ECDeliveryApp());
 }
@@ -16,7 +16,7 @@ class ECDeliveryApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false,
       title: 'EC Delivery',
       theme: theme(),
       builder: (context, widget) => ResponsiveWrapper.builder(
