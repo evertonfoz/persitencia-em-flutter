@@ -4,7 +4,7 @@ import 'package:ec_delivery/features/boasvindas/presentation/pages/boasvindas.da
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-
+import 'package:ec_delivery/core/presentation/constants/responsiveness.dart';
 import 'features/produtos/presentation/pages/crud.dart';
 
 void main() {
@@ -23,12 +23,15 @@ class ECDeliveryApp extends StatelessWidget {
       title: 'EC Delivery',
       theme: theme(),
       builder: (context, widget) => ResponsiveWrapper.builder(
-        widget,
+        ClampingScrollWrapper.builder(context, widget!),
+        // widget,
         minWidth: 410,
+        // maxWidth: 2600,
         defaultScale: true,
         breakpoints: [
           ResponsiveBreakpoint.resize(410, name: MOBILE),
           ResponsiveBreakpoint.autoScale(560, name: TABLET),
+          ResponsiveBreakpoint.resize(kDesktopBreakpoint, name: DESKTOP),
         ],
         backgroundColor: Colors.indigo.shade600,
       ),

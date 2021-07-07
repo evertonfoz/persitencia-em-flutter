@@ -5,9 +5,9 @@ import '../constants.dart';
 ThemeData theme() {
   return ThemeData(
     scaffoldBackgroundColor: Colors.indigo.shade600,
-    appBarTheme: appBarTheme(),
-    inputDecorationTheme: inputDecorationTheme(),
-    textTheme: textTheme(),
+    // appBarTheme: appBarTheme(),
+    // inputDecorationTheme: inputDecorationTheme(),
+    // textTheme: textTheme(),
   );
 }
 
