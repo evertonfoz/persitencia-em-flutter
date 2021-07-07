@@ -19,6 +19,7 @@ class _TextFormFieldPEFState extends State<TextFormFieldPEF> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      // mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
