@@ -8,13 +8,16 @@ class GravarProdutoButton extends StatelessWidget {
         width: MediaQuery.of(context).size.width * 0.95,
         height: 45,
       ),
-      child: ElevatedButton.icon(
-        icon: Icon(Icons.save),
-        label: Text(
-          'Gravar',
-          style: TextStyle(fontSize: 24),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 8.0),
+        child: ElevatedButton.icon(
+          icon: Icon(Icons.save),
+          label: Text(
+            'Gravar',
+            style: TextStyle(fontSize: 24),
+          ),
+          onPressed: () {},
         ),
-        onPressed: () {},
       ),
     );
   }

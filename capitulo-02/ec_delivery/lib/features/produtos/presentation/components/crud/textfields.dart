@@ -5,6 +5,7 @@ class FormTextFields extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      // mainAxisSize: MainAxisSize.min,
       children: [
         TextFormFieldPEF(
           text: 'Nome',
@@ -21,7 +22,7 @@ class FormTextFields extends StatelessWidget {
           textInputType: TextInputType.number,
           textInputAction: TextInputAction.done,
         ),
-        SizedBox(height: 20),
+        // SizedBox(height: 20),
       ],
     );
   }

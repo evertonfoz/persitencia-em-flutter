@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 class PhotoProdutoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    print(MediaQuery.of(context).size);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
         width: 300,
-        height: 300,
+        height: MediaQuery.of(context).size.height * .37,
         child: Stack(
           alignment: Alignment.center,
           children: [
