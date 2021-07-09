@@ -6,7 +6,7 @@ class GravarProdutoButton extends StatelessWidget {
     return ConstrainedBox(
       constraints: BoxConstraints.tightFor(
         width: MediaQuery.of(context).size.width * 0.95,
-        height: 45,
+        // height: 45,
       ),
       child: Padding(
         padding: const EdgeInsets.only(top: 8.0),
