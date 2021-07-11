@@ -6,4 +6,8 @@ Aproveitando seu interesse e disponibilidade, acesse meu canal sobre Flutter, o 
 
 Se precisar falar diretamente comigo, meu email é evertoncoimbra@gmail.com. Posso demorar um pouco para responder, mas sempre respondo.
 
+Você pode também me encontrar nas redes socias indicadas pela figura a seguir.
+
+![Minhas rede sociais. {w=50%}](https://github.com/evertonfoz/persitencia-em-flutter/blob/main/redessociais.png)
+
 Sucesso
