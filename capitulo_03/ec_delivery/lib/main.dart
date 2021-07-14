@@ -1,4 +1,5 @@
 import 'package:ec_delivery/core/presentation/theme.dart';
+import 'package:ec_delivery/features/boasvindas/presentation/pages/boasvindas.dart';
 import 'package:ec_delivery/features/produtos/presentation/pages/crud.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -23,7 +24,7 @@ class ECDeliveryApp extends StatelessWidget {
         ],
         backgroundColor: Colors.indigo.shade600,
       ),
-      home: ProdutosCRUDPage(),
+      home: BoasVindasPage(),
     );
   }
 }
