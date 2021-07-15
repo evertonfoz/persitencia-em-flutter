@@ -13,6 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
   responsive_framework: ^0.1.2
+  shared_preferences: ^2.0.6
 
 dev_dependencies:
   flutter_test:
