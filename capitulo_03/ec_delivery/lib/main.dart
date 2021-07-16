@@ -1,4 +1,5 @@
 import 'package:ec_delivery/core/presentation/theme.dart';
+import 'package:ec_delivery/features/boasvindas/data/datasources/boasvindas_datasource.dart';
 import 'package:ec_delivery/features/boasvindas/presentation/pages/boasvindas.dart';
 import 'package:ec_delivery/features/produtos/presentation/pages/crud.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,24 @@ class ECDeliveryApp extends StatelessWidget {
         ],
         backgroundColor: Colors.indigo.shade600,
       ),
-      home: BoasVindasPage(),
+      home: FutureBuilder(
+        future: _buildHome(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return snapshot.data;
+          }
+
+          return Container();
+        },
+      ),
     );
+  }
+
+  Future<Widget> _buildHome() async {
+    if (await BoasVindasDataSource.getDontShowAgain()) {
+      return ProdutosCRUDPage();
+    }
+
+    return BoasVindasPage();
   }
 }
