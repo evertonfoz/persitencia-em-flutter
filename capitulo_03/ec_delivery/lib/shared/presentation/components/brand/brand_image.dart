@@ -15,7 +15,7 @@ class BrandImageWidget extends StatelessWidget {
       'assets/images/brand/320x253.png',
       width: width,
       height: height,
-      fit: BoxFit.fitWidth,
+      fit: BoxFit.contain,
     );
   }
 }

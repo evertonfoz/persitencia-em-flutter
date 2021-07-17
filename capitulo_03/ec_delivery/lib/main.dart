@@ -1,3 +1,4 @@
+import 'package:ec_delivery/core/presentation/constants/responsiveness.dart';
 import 'package:ec_delivery/core/presentation/theme.dart';
 import 'package:ec_delivery/features/boasvindas/data/datasources/boasvindas_datasource.dart';
 import 'package:ec_delivery/features/boasvindas/presentation/pages/boasvindas.dart';
@@ -28,6 +29,7 @@ class ECDeliveryApp extends StatelessWidget {
         breakpoints: [
           ResponsiveBreakpoint.resize(410, name: MOBILE),
           ResponsiveBreakpoint.autoScale(560, name: TABLET),
+          ResponsiveBreakpoint.resize(kDesktopBreakpoint, name: DESKTOP),
         ],
         backgroundColor: Colors.indigo.shade600,
       ),
