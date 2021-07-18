@@ -10,24 +10,38 @@ class BoasVindasPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: ConstrainedBox(
-            constraints: BoxConstraints.tightFor(
-              width: kDesktopBreakpoint,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                BrandTitleWidget(),
-                BrandImageWidget(
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  height: MediaQuery.of(context).size.height * 0.5,
+        child: Stack(
+          children: [
+            Container(
+              width: double.infinity,
+              child: Opacity(
+                opacity: 0.1,
+                child: Image.asset(
+                  'assets/images/brand/160x127.png',
+                  repeat: ImageRepeat.repeat,
                 ),
-                WelcomeTextWidget(),
-                BottomRowBoasVindasWidget(),
-              ],
+              ),
             ),
-          ),
+            Center(
+              child: ConstrainedBox(
+                constraints: BoxConstraints.tightFor(
+                  width: kDesktopBreakpoint,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    BrandTitleWidget(),
+                    BrandImageWidget(
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      height: MediaQuery.of(context).size.height * 0.5,
+                    ),
+                    WelcomeTextWidget(),
+                    BottomRowBoasVindasWidget(),
+                  ],
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
