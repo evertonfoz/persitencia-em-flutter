@@ -1,9 +1,7 @@
-import 'package:ec_delivery/core/presentation/constants/responsiveness.dart';
-import 'package:ec_delivery/features/boasvindas/presentation/components/bottom_row.dart';
-import 'package:ec_delivery/features/boasvindas/presentation/components/welcome_text.dart';
-import 'package:ec_delivery/shared/presentation/components/brand/brand_image.dart';
-import 'package:ec_delivery/shared/presentation/components/brand/brand_title.dart';
+import 'package:ec_delivery/features/boasvindas/presentation/components/background.dart';
+import 'package:ec_delivery/features/boasvindas/presentation/components/body_content.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class BoasVindasPage extends StatelessWidget {
   @override
@@ -12,35 +10,14 @@ class BoasVindasPage extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
-            Container(
-              width: double.infinity,
-              child: Opacity(
-                opacity: 0.1,
-                child: Image.asset(
-                  'assets/images/brand/160x127.png',
-                  repeat: ImageRepeat.repeat,
-                ),
-              ),
+            ResponsiveVisibility(
+              visible: false,
+              visibleWhen: [
+                Condition.largerThan(name: MOBILE),
+              ],
+              child: BoasVindasBackground(),
             ),
-            Center(
-              child: ConstrainedBox(
-                constraints: BoxConstraints.tightFor(
-                  width: kDesktopBreakpoint,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    BrandTitleWidget(),
-                    BrandImageWidget(
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      height: MediaQuery.of(context).size.height * 0.5,
-                    ),
-                    WelcomeTextWidget(),
-                    BottomRowBoasVindasWidget(),
-                  ],
-                ),
-              ),
-            ),
+            BoasVindasContentBody(),
           ],
         ),
       ),
