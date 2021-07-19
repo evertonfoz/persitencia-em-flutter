@@ -21,7 +21,7 @@ class FormTextFields extends StatelessWidget {
           textInputType: TextInputType.number,
           textInputAction: TextInputAction.done,
         ),
-        SizedBox(height: 20),
+        // SizedBox(height: 20),
       ],
     );
   }
