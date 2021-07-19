@@ -7,7 +7,7 @@ class PhotoProdutoWidget extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Container(
         width: 300,
-        height: 300,
+        height: MediaQuery.of(context).size.height * .37,
         child: Stack(
           alignment: Alignment.center,
           children: [

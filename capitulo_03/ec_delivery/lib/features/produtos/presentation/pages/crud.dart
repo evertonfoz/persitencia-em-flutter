@@ -1,5 +1,5 @@
 import 'package:ec_delivery/features/boasvindas/data/datasources/boasvindas_datasource.dart';
-import 'package:ec_delivery/features/produtos/presentation/componentes/crud/form.dart';
+import 'package:ec_delivery/features/produtos/presentation/components/crud/form.dart';
 import 'package:ec_delivery/shared/presentation/functions/alertdialog.dart';
 import 'package:flutter/material.dart';
 
