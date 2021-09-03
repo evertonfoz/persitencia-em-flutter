@@ -11,7 +11,21 @@ class MobileForm extends StatelessWidget {
         Expanded(flex: 4, child: FormTextFields()),
         Expanded(flex: 4, child: PhotoProdutoWidget()),
         SizedBox(height: 10),
-        Expanded(flex: 1, child: GravarProdutoButton()),
+        Expanded(
+            flex: 1,
+            child: GravarProdutoButton(
+              onPressed: () {},
+            )),
+        // await ProdutosSQLiteDatasource().create(
+        //     Produto(
+        //         nome: 'Pizza de Calabresa',
+        //         descricao: 'Mussarela, calabresa, azeitona e ceboa',
+        //         valor: 50),
+        //   );
+        //   showBottomSnackBar(
+        //       title: 'Sucesso',
+        //       content: 'Produto registrado',
+        //       context: context);
       ],
     );
   }

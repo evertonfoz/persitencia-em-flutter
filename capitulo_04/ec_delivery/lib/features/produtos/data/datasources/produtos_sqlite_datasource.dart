@@ -21,15 +21,16 @@ class ProdutosSQLiteDatasource {
 
       produto.produtoID =
           await db.rawInsert('''insert into $PRODUTOS_TABLE_NAME(
-                $PRODUTOS_COLUMN_PRODUTOID, $PRODUTOS_COLUMN_NOME, 
-                $PRODUTOS_COLUMN_DESCRICAO, $PRODUTOS_COLUMN_VALOR) 
+                $PRODUTOS_COLUMN_NOME, $PRODUTOS_COLUMN_DESCRICAO,
+                $PRODUTOS_COLUMN_VALOR) 
               VALUES(
-                ${produto.produtoID}, ${produto.nome}, 
-                ${produto.descricao}, ${produto.valor}
+                '${produto.nome}', '${produto.descricao}', 
+                ${produto.valor}
               )
           ''');
       print(produto.produtoID);
     } catch (ex) {
+      print(ex);
       return;
     }
   }
