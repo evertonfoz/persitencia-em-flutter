@@ -21,18 +21,7 @@ class GravarProdutoButton extends StatelessWidget {
           'Gravar',
           style: TextStyle(fontSize: 24),
         ),
-        onPressed: () async {
-          await ProdutosSQLiteDatasource().create(
-            Produto(
-                nome: 'Pizza de Calabresa',
-                descricao: 'Mussarela, calabresa, azeitona e ceboa',
-                valor: 50),
-          );
-          showBottomSnackBar(
-              title: 'Sucesso',
-              content: 'Produto registrado',
-              context: context);
-        },
+        onPressed: () async {},
       ),
     );
   }

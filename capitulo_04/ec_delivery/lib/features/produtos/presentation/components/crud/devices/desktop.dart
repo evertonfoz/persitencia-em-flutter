@@ -16,7 +16,9 @@ class DesktopForm extends StatelessWidget {
           ],
         ),
         SizedBox(height: 20),
-        GravarProdutoButton(),
+        GravarProdutoButton(
+          onPressed: () {},
+        ),
       ],
     );
   }
