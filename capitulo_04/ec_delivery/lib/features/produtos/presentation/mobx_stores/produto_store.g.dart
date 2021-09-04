@@ -28,6 +28,12 @@ mixin _$ProdutoStore on _ProdutoStore, Store {
   double get valor => (_$valorComputed ??=
           Computed<double>(() => super.valor, name: '_ProdutoStore.valor'))
       .value;
+  Computed<bool>? _$formOKComputed;
+
+  @override
+  bool get formOK => (_$formOKComputed ??=
+          Computed<bool>(() => super.formOK, name: '_ProdutoStore.formOK'))
+      .value;
 
   final _$_nomeAtom = Atom(name: '_ProdutoStore._nome');
 
@@ -100,7 +106,7 @@ mixin _$ProdutoStore on _ProdutoStore, Store {
   }
 
   @override
-  dynamic atualizarValor(double valor) {
+  dynamic atualizarValor(String valor) {
     final _$actionInfo = _$_ProdutoStoreActionController.startAction(
         name: '_ProdutoStore.atualizarValor');
     try {
@@ -115,7 +121,8 @@ mixin _$ProdutoStore on _ProdutoStore, Store {
     return '''
 nome: ${nome},
 descricao: ${descricao},
-valor: ${valor}
+valor: ${valor},
+formOK: ${formOK}
     ''';
   }
 }

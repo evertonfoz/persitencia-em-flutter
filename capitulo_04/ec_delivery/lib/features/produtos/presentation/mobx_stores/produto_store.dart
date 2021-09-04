@@ -27,6 +27,9 @@ abstract class _ProdutoStore with Store {
   @computed
   double get valor => _valor ?? 0;
 
+  @computed
+  bool get formOK => (nome.isNotEmpty && descricao.isNotEmpty && valor > 0);
+
   @action
   atualizarNome(String nome) {
     _nome = nome;
@@ -38,7 +41,7 @@ abstract class _ProdutoStore with Store {
   }
 
   @action
-  atualizarValor(double valor) {
-    _valor = valor;
+  atualizarValor(String valor) {
+    _valor = double.tryParse(valor);
   }
 }

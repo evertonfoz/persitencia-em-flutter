@@ -4,6 +4,7 @@ import 'package:ec_delivery/shared/presentation/components/buttons/default_text_
 import 'package:ec_delivery/shared/presentation/components/checkbox/checkbox.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class BottomRowBoasVindasWidget extends StatelessWidget {
   bool _checkedBoxValue = false;
 

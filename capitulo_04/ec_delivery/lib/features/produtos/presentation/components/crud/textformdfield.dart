@@ -4,13 +4,13 @@ class TextFormFieldPEF extends StatefulWidget {
   final String text;
   final TextInputType textInputType;
   final TextInputAction textInputAction;
-  final Function(String?)? onSaved;
+  final Function(String?)? onChanged;
 
   const TextFormFieldPEF({
     required this.text,
     this.textInputType: TextInputType.text,
     this.textInputAction: TextInputAction.done,
-    this.onSaved,
+    this.onChanged,
   });
   @override
   _TextFormFieldPEFState createState() => _TextFormFieldPEFState();
@@ -38,8 +38,8 @@ class _TextFormFieldPEFState extends State<TextFormFieldPEF> {
                 EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
           ),
           onChanged: (value) {
-            if (widget.onSaved != null) {
-              widget.onSaved!(value);
+            if (widget.onChanged != null) {
+              widget.onChanged!(value);
             }
           },
         ),
