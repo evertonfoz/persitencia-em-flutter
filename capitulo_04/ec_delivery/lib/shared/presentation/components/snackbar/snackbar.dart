@@ -32,23 +32,8 @@ void showBottomSnackBar({
         reverseAnimationCurve: Curves.bounceIn,
         child: FlashBar(
           padding: EdgeInsets.all(25),
-          title: Visibility(
-            visible: title != null,
-            child: Text(
-              title ?? '',
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          content: Visibility(
-            visible: content != null,
-            child: Text(
-              content ?? '',
-              style: TextStyle(fontSize: 20),
-            ),
-          ),
+          title: _buildTitle(title),
+          content: _buildContent(content),
           indicatorColor: Colors.red,
           icon: Icon(
             Icons.info_outline,
@@ -58,30 +43,29 @@ void showBottomSnackBar({
         ),
       );
     },
-  ).then((_) {
-    if (_ != null) {
-      _showMessage(message: _.toString(), context: context);
-    }
-  });
+  );
 }
 
-void _showMessage({required String message, required BuildContext context}) {
-  showFlash(
-      context: context,
-      duration: Duration(seconds: 3),
-      builder: (_, controller) {
-        return Flash(
-          controller: controller,
-          position: FlashPosition.top,
-          behavior: FlashBehavior.fixed,
-          child: FlashBar(
-            icon: Icon(
-              Icons.face,
-              size: 36.0,
-              color: Colors.black,
-            ),
-            content: Text(message),
-          ),
-        );
-      });
+_buildTitle(String? title) {
+  if (title == null) {
+    return Container();
+  }
+
+  return Text(
+    title,
+    style: TextStyle(
+      fontSize: 30,
+      fontWeight: FontWeight.bold,
+    ),
+  );
+}
+
+_buildContent(String? content) {
+  if (content == null) {
+    return Container();
+  }
+  return Text(
+    content,
+    style: TextStyle(fontSize: 20),
+  );
 }
