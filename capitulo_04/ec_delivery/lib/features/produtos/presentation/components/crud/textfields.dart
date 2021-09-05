@@ -9,6 +9,7 @@ class FormTextFields extends StatelessWidget {
     return Column(
       children: [
         TextFormFieldPEF(
+          controller: GetIt.I.get<ProdutoStore>().nomeController,
           text: 'Nome',
           textInputAction: TextInputAction.next,
           onChanged: (value) =>
@@ -16,6 +17,7 @@ class FormTextFields extends StatelessWidget {
         ),
         SizedBox(height: 10),
         TextFormFieldPEF(
+          controller: GetIt.I.get<ProdutoStore>().descricaoController,
           text: 'Descrição',
           textInputAction: TextInputAction.next,
           onChanged: (value) =>
@@ -23,6 +25,7 @@ class FormTextFields extends StatelessWidget {
         ),
         SizedBox(height: 10),
         TextFormFieldPEF(
+          controller: GetIt.I.get<ProdutoStore>().valorController,
           text: 'Valor',
           textInputType: TextInputType.number,
           textInputAction: TextInputAction.done,

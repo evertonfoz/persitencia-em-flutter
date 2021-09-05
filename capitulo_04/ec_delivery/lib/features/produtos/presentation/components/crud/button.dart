@@ -47,5 +47,7 @@ class GravarProdutoButton extends StatelessWidget {
       title: 'Sucesso',
       content: 'O produto ${produto.nome.toUpperCase()} foi registrado',
     );
+
+    GetIt.I.get<ProdutoStore>().resetForm();
   }
 }

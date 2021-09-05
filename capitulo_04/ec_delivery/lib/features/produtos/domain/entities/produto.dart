@@ -16,4 +16,12 @@ class Produto extends Equatable {
 
   @override
   List<Object> get props => [produtoID!];
+
+  Produto.fromMap(Map<String, Object?> map) {
+    return Produto(produtoID: , nome: nome, descricao: descricao, valor: valor)
+    produtoID : map['produtoID'],
+    nome :map['nome'],
+    descricao : map['descricao'],
+    valor : map[valor],
+  }
 }
