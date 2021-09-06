@@ -1,3 +1,4 @@
+import 'package:ec_delivery/features/produtos/data/models/produto_model.dart';
 import 'package:ec_delivery/features/produtos/domain/entities/produto.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -15,7 +16,7 @@ class ProdutosSQLiteDatasource {
     );
   }
 
-  Future create(Produto produto) async {
+  Future create(ProdutoModel produto) async {
     try {
       final Database db = await _getDatabase();
 
@@ -33,40 +34,23 @@ class ProdutosSQLiteDatasource {
     }
   }
 
-  Future<List<Produto>> getAll() async {
+  Future<List<ProdutoModel>> getAll() async {
     try {
       final Database db = await _getDatabase();
 
       final List<Map<String, dynamic>> produtosMap =
           await db.query(PRODUTOS_TABLE_NAME);
 
-      produto.produtoID =
-          await db.rawInsert('''insert into $PRODUTOS_TABLE_NAME(
-                $PRODUTOS_COLUMN_NOME, $PRODUTOS_COLUMN_DESCRICAO,
-                $PRODUTOS_COLUMN_VALOR) 
-              VALUES(
-                '${produto.nome}', '${produto.descricao}', 
-                ${produto.valor}
-              )
-          ''');
+      return List.generate(
+        produtosMap.length,
+        (index) {
+          return ProdutoModel.fromMap(
+            produtosMap[index],
+          );
+        },
+      );
     } catch (ex) {
-      return;
+      return List.empty();
     }
   }
-  // Future<List<ContactModel>> getContacts() async {
-  //   try {
-  //     final Database db = await _getDatabase();
-  //     final List<Map<String, dynamic>> maps = await db.query(TABLE_NAME);
-
-  //     return List.generate(
-  //       maps.length,
-  //       (i) {
-  //         return ContactModel.fromMap(maps[i]);
-  //       },
-  //     );
-  //   } catch (ex) {
-  //     print(ex);
-  //     return new List<ContactModel>();
-  //   }
-  // }
 }

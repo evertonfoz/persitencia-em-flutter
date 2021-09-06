@@ -1,4 +1,5 @@
 import 'package:ec_delivery/features/produtos/data/datasources/produtos_sqlite_datasource.dart';
+import 'package:ec_delivery/features/produtos/data/models/produto_model.dart';
 import 'package:ec_delivery/features/produtos/domain/entities/produto.dart';
 import 'package:ec_delivery/features/produtos/presentation/mobx_stores/produto_store.dart';
 import 'package:ec_delivery/shared/presentation/components/snackbar/snackbar.dart';
@@ -35,7 +36,7 @@ class GravarProdutoButton extends StatelessWidget {
   }
 
   _onPressed() {
-    var produto = Produto(
+    var produto = ProdutoModel(
         nome: GetIt.I.get<ProdutoStore>().nome,
         descricao: GetIt.I.get<ProdutoStore>().descricao,
         valor: GetIt.I.get<ProdutoStore>().valor);

@@ -9,6 +9,8 @@ import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
+import 'features/produtos/presentation/pages/listagem.dart';
+
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(statusBarColor: Colors.transparent),
@@ -52,7 +54,8 @@ class ECDeliveryApp extends StatelessWidget {
 
   Future<Widget> _buildHome() async {
     if (await BoasVindasDataSource.getDontShowAgain()) {
-      return ProdutosCRUDPage();
+      return ProdutosListPage();
+      // return ProdutosCRUDPage();
     }
 
     return BoasVindasPage();
