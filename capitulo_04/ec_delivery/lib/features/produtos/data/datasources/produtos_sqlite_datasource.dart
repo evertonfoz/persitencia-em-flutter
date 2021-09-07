@@ -6,9 +6,9 @@ import 'constants.dart';
 
 class ProdutosSQLiteDatasource {
   Future<Database> _getDatabase() async {
-    await deleteDatabase(
-      join(await getDatabasesPath(), DATABASE_NAME),
-    );
+    // await deleteDatabase(
+    //   join(await getDatabasesPath(), DATABASE_NAME),
+    // );
     return openDatabase(
       join(await getDatabasesPath(), DATABASE_NAME),
       onOpen: (db) async {
@@ -68,6 +68,30 @@ class ProdutosSQLiteDatasource {
     } catch (ex) {
       print(ex);
       return List.empty();
+    }
+  }
+
+  Future update(ProdutoModel produto) async {
+    try {
+      final Database db = await _getDatabase();
+
+      await db.update(
+        PRODUTOS_TABLE_NAME,
+        produto.toMap(),
+        where: "id = ?",
+        whereArgs: [model.id],
+      );
+      produto.produtoID =
+          await db.rawInsert('''insert into $PRODUTOS_TABLE_NAME(
+                $PRODUTOS_COLUMN_NOME, $PRODUTOS_COLUMN_DESCRICAO,
+                $PRODUTOS_COLUMN_VALOR) 
+              VALUES(
+                '${produto.nome}', '${produto.descricao}', 
+                ${produto.valor}
+              )
+          ''');
+    } catch (ex) {
+      return;
     }
   }
 }

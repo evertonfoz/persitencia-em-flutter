@@ -9,6 +9,13 @@ part of 'produto_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$ProdutoStore on _ProdutoStore, Store {
+  Computed<int?>? _$produtoIDComputed;
+
+  @override
+  int? get produtoID =>
+      (_$produtoIDComputed ??= Computed<int?>(() => super.produtoID,
+              name: '_ProdutoStore.produtoID'))
+          .value;
   Computed<String>? _$nomeComputed;
 
   @override
@@ -34,6 +41,21 @@ mixin _$ProdutoStore on _ProdutoStore, Store {
   bool get formOK => (_$formOKComputed ??=
           Computed<bool>(() => super.formOK, name: '_ProdutoStore.formOK'))
       .value;
+
+  final _$_produtoIDAtom = Atom(name: '_ProdutoStore._produtoID');
+
+  @override
+  int? get _produtoID {
+    _$_produtoIDAtom.reportRead();
+    return super._produtoID;
+  }
+
+  @override
+  set _produtoID(int? value) {
+    _$_produtoIDAtom.reportWrite(value, super._produtoID, () {
+      super._produtoID = value;
+    });
+  }
 
   final _$_nomeAtom = Atom(name: '_ProdutoStore._nome');
 
@@ -84,6 +106,17 @@ mixin _$ProdutoStore on _ProdutoStore, Store {
       ActionController(name: '_ProdutoStore');
 
   @override
+  dynamic atualizarProdutoID(int? produtoID) {
+    final _$actionInfo = _$_ProdutoStoreActionController.startAction(
+        name: '_ProdutoStore.atualizarProdutoID');
+    try {
+      return super.atualizarProdutoID(produtoID);
+    } finally {
+      _$_ProdutoStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic atualizarNome(String nome) {
     final _$actionInfo = _$_ProdutoStoreActionController.startAction(
         name: '_ProdutoStore.atualizarNome');
@@ -119,6 +152,7 @@ mixin _$ProdutoStore on _ProdutoStore, Store {
   @override
   String toString() {
     return '''
+produtoID: ${produtoID},
 nome: ${nome},
 descricao: ${descricao},
 valor: ${valor},

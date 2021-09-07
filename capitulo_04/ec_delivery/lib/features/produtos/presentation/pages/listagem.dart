@@ -1,10 +1,13 @@
 import 'package:ec_delivery/core/presentation/constants/urls.dart';
+import 'package:ec_delivery/features/produtos/presentation/mobx_stores/produto_store.dart';
 import 'package:ec_delivery/shared/presentation/components/circleavatar/circleavatar.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 
 import '../../data/datasources/produtos_sqlite_datasource.dart';
 import '../../data/models/produto_model.dart';
+import 'crud.dart';
 
 class ProdutosListPage extends StatelessWidget {
   @override
@@ -36,46 +39,26 @@ class ProdutosListPage extends StatelessWidget {
     return ListView.builder(
       itemCount: produtos.length,
       itemBuilder: (context, index) {
-        ProdutoModel produto = produtos[index];
         return Padding(
           padding: const EdgeInsets.only(left: 8.0, right: 4.0),
-          child: Row(children: [
-            CircleAvatarPEF(
-              imageURL: kTesteFotoURL,
-              backgroundColor: Colors.indigo.shade900,
-            ),
-            SizedBox(
-              width: 8,
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    produto.nome,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                    ),
-                  ),
-                  Text(
-                    produto.descricao,
-                    style: TextStyle(
-                      color: Colors.white54,
-                      fontSize: 18,
-                    ),
-                  ),
-                ],
+          child: InkWell(
+            onTap: () {
+              GetIt.I.get<ProdutoStore>().inicializarForm(produtos[index]);
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProdutosCRUDPage(),
+                ),
+              );
+            },
+            child: Padding(
+              padding: EdgeInsets.only(bottom: 8.0),
+              child: _listTile(
+                context,
+                produtos[index],
               ),
             ),
-            Text(
-              '${_valorEmMoedaCorrente(context, produto.valor)}',
-              style: TextStyle(
-                color: Colors.yellow.shade500,
-                fontSize: 20,
-              ),
-            ),
-          ]),
+          ),
         );
       },
     );
@@ -86,6 +69,46 @@ class ProdutosListPage extends StatelessWidget {
         NumberFormat.simpleCurrency(locale: Intl.defaultLocale);
     return formatadorValor.format(
       valor,
+    );
+  }
+
+  _listTile(BuildContext context, ProdutoModel produto) {
+    return Row(
+      children: [
+        CircleAvatarPEF(
+          imageURL: kTesteFotoURL,
+          backgroundColor: Colors.indigo.shade900,
+        ),
+        SizedBox(width: 8),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                produto.nome,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                ),
+              ),
+              Text(
+                produto.descricao,
+                style: TextStyle(
+                  color: Colors.white54,
+                  fontSize: 18,
+                ),
+              ),
+            ],
+          ),
+        ),
+        Text(
+          '${_valorEmMoedaCorrente(context, produto.valor)}',
+          style: TextStyle(
+            color: Colors.yellow.shade500,
+            fontSize: 20,
+          ),
+        ),
+      ],
     );
   }
 }
