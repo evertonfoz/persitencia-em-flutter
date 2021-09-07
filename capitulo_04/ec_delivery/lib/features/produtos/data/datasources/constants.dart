@@ -9,7 +9,7 @@ const String PRODUTOS_COLUMN_VALOR = 'valor';
 const String CREATE_PRODUTOS_TABLE_SCRIPT = '''
   CREATE TABLE $PRODUTOS_TABLE_NAME
   (
-    $PRODUTOS_COLUMN_PRODUTOID STRING PRIMARY KEY,
+    $PRODUTOS_COLUMN_PRODUTOID INTEGER PRIMARY KEY,
     $PRODUTOS_COLUMN_NOME TEXT,
     $PRODUTOS_COLUMN_DESCRICAO TEXT, 
     $PRODUTOS_COLUMN_VALOR REAL
@@ -17,4 +17,5 @@ const String CREATE_PRODUTOS_TABLE_SCRIPT = '''
   ''';
 
 /// [databaseVersion] 1: Criação inicial da tabela [produtos]
+/// [databaseVersion] 2: Alteração do [produtoID] para INT
 const int databaseVersion = 1;

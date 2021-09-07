@@ -1,3 +1,4 @@
+import 'package:ec_delivery/core/presentation/constants/urls.dart';
 import 'package:flutter/material.dart';
 
 class PhotoProdutoWidget extends StatelessWidget {
@@ -17,7 +18,7 @@ class PhotoProdutoWidget extends StatelessWidget {
                 color: Colors.white,
                 border: Border.all(color: Colors.black, width: 5),
                 image: DecorationImage(
-                  image: AssetImage('assets/images/sem_foto.png'),
+                  image: AssetImage(kSemFotoURL),
                   fit: BoxFit.cover,
                 ),
               ),

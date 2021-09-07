@@ -1,6 +1,9 @@
-import 'package:ec_delivery/features/produtos/data/datasources/produtos_sqlite_datasource.dart';
-import 'package:ec_delivery/features/produtos/data/models/produto_model.dart';
+import 'package:ec_delivery/core/presentation/constants/urls.dart';
+import 'package:ec_delivery/shared/presentation/components/circleavatar/circleavatar.dart';
 import 'package:flutter/material.dart';
+
+import '../../data/datasources/produtos_sqlite_datasource.dart';
+import '../../data/models/produto_model.dart';
 
 class ProdutosListPage extends StatelessWidget {
   @override
@@ -10,33 +13,70 @@ class ProdutosListPage extends StatelessWidget {
         title: Text('Produtos registrados'),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top: 28, left: 8, right: 8),
+        padding: const EdgeInsets.only(top: 28),
         child: FutureBuilder(
           future: ProdutosSQLiteDatasource().getAll(),
           builder: (context, snapshot) {
-            print('1. ${snapshot.hasData}');
-
             if (!snapshot.hasData) {
-              return Center(child: CircularProgressIndicator());
+              return Center(
+                  child: CircularProgressIndicator(
+                color: Colors.yellow.shade400,
+              ));
             }
 
-            List<ProdutoModel> produtos = (snapshot.data as List<ProdutoModel>);
-            print('${produtos.length}');
-            return ListView.builder(
-              itemCount: produtos.length,
-              // reverse: true,
-              itemBuilder: (context, index) {
-                ProdutoModel produto = produtos[index];
-                return ListTile(
-                  title: Text(produto.nome),
-                  subtitle: Text(produto.descricao),
-                  trailing: Text('${produto.valor}'),
-                );
-              },
-            );
+            return _listView(snapshot.data as List<ProdutoModel>);
           },
         ),
       ),
+    );
+  }
+
+  _listView(List<ProdutoModel> produtos) {
+    return ListView.builder(
+      itemCount: produtos.length,
+      itemBuilder: (context, index) {
+        ProdutoModel produto = produtos[index];
+        return Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 4.0),
+          child: Row(children: [
+            CircleAvatarPEF(
+              imageURL: kTesteFotoURL,
+              backgroundColor: Colors.indigo.shade900,
+            ),
+            SizedBox(
+              width: 8,
+            ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    produto.nome,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                  Text(
+                    produto.descricao,
+                    style: TextStyle(
+                      color: Colors.white54,
+                      fontSize: 18,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Text(
+              '${produto.valor}',
+              style: TextStyle(
+                color: Colors.yellow.shade500,
+                fontSize: 20,
+              ),
+            ),
+          ]),
+        );
+      },
     );
   }
 }

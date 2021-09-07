@@ -12,8 +12,9 @@ ThemeData theme() {
 
 TextTheme textTheme() {
   return TextTheme(
-    // bodyText1: TextStyle(color: kTextColor),
+    // bodyText1: TextStyle(color: Colors.amberAccent),
     bodyText2: TextStyle(color: kTextColor),
-    // subtitle1: TextStyle(color: kTextColor),
+    subtitle1: TextStyle(color: Colors.amberAccent),
+    caption: TextStyle(color: Colors.red),
   );
 }

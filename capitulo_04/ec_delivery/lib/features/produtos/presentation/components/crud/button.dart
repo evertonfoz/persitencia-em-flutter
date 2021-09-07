@@ -1,11 +1,11 @@
-import 'package:ec_delivery/features/produtos/data/datasources/produtos_sqlite_datasource.dart';
-import 'package:ec_delivery/features/produtos/data/models/produto_model.dart';
-import 'package:ec_delivery/features/produtos/domain/entities/produto.dart';
-import 'package:ec_delivery/features/produtos/presentation/mobx_stores/produto_store.dart';
-import 'package:ec_delivery/shared/presentation/components/snackbar/snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
+
+import '../../../data/datasources/produtos_sqlite_datasource.dart';
+import '../../../data/models/produto_model.dart';
+import '../../mobx_stores/produto_store.dart';
+import '../../../../../shared/presentation/components/snackbar/snackbar.dart';
 
 // ignore: must_be_immutable
 class GravarProdutoButton extends StatelessWidget {
