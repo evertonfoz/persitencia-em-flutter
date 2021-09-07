@@ -45,7 +45,6 @@ class ProdutosSQLiteDatasource {
                 ${produto.valor}
               )
           ''');
-      print(produto.produtoID);
     } catch (ex) {
       return;
     }
@@ -58,7 +57,6 @@ class ProdutosSQLiteDatasource {
       final List<Map<String, dynamic>> produtosMap =
           await db.query(PRODUTOS_TABLE_NAME);
 
-      print(produtosMap);
       return List.generate(
         produtosMap.length,
         (index) {

@@ -17,6 +17,7 @@ dependencies:
     sdk: flutter
   flutter_mobx: ^2.0.2
   get_it: ^7.2.0
+  intl: ^0.17.0
   mobx: ^2.0.4
   path: ^1.8.0
   responsive_framework: ^0.1.2

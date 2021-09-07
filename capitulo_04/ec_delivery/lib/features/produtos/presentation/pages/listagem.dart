@@ -1,6 +1,7 @@
 import 'package:ec_delivery/core/presentation/constants/urls.dart';
 import 'package:ec_delivery/shared/presentation/components/circleavatar/circleavatar.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../data/datasources/produtos_sqlite_datasource.dart';
 import '../../data/models/produto_model.dart';
@@ -68,7 +69,7 @@ class ProdutosListPage extends StatelessWidget {
               ),
             ),
             Text(
-              '${produto.valor}',
+              '${_valorEmMoedaCorrente(context, produto.valor)}',
               style: TextStyle(
                 color: Colors.yellow.shade500,
                 fontSize: 20,
@@ -77,6 +78,14 @@ class ProdutosListPage extends StatelessWidget {
           ]),
         );
       },
+    );
+  }
+
+  _valorEmMoedaCorrente(BuildContext context, double valor) {
+    final formatadorValor =
+        NumberFormat.simpleCurrency(locale: Intl.defaultLocale);
+    return formatadorValor.format(
+      valor,
     );
   }
 }
