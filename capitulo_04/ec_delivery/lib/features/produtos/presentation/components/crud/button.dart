@@ -35,18 +35,20 @@ class GravarProdutoButton extends StatelessWidget {
     );
   }
 
-  _onPressed() {
+  _onPressed() async {
     var produto = ProdutoModel(
+        produtoID: GetIt.I.get<ProdutoStore>().produtoID,
         nome: GetIt.I.get<ProdutoStore>().nome,
         descricao: GetIt.I.get<ProdutoStore>().descricao,
         valor: GetIt.I.get<ProdutoStore>().valor);
 
-    ProdutosSQLiteDatasource().create(produto);
+    await ProdutosSQLiteDatasource().save(produto);
 
     showBottomSnackBar(
       context: _context,
       title: 'Sucesso',
-      content: 'O produto ${produto.nome.toUpperCase()} foi registrado',
+      content:
+          'Os dados do produto ${produto.nome.toUpperCase()} foram registrados',
     );
 
     GetIt.I.get<ProdutoStore>().resetForm();

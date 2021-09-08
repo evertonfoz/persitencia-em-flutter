@@ -1,6 +1,8 @@
 import 'package:ec_delivery/core/presentation/constants/urls.dart';
 import 'package:ec_delivery/features/produtos/presentation/mobx_stores/produto_store.dart';
 import 'package:ec_delivery/shared/presentation/components/circleavatar/circleavatar.dart';
+import 'package:ec_delivery/shared/presentation/components/dismissible/dismissible.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
@@ -9,7 +11,12 @@ import '../../data/datasources/produtos_sqlite_datasource.dart';
 import '../../data/models/produto_model.dart';
 import 'crud.dart';
 
-class ProdutosListPage extends StatelessWidget {
+class ProdutosListPage extends StatefulWidget {
+  @override
+  _ProdutosListPageState createState() => _ProdutosListPageState();
+}
+
+class _ProdutosListPageState extends State<ProdutosListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,6 +39,21 @@ class ProdutosListPage extends StatelessWidget {
           },
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Icons.add,
+        ),
+        onPressed: () async {
+          GetIt.I.get<ProdutoStore>().resetForm();
+          await Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ProdutosCRUDPage(),
+            ),
+          );
+          setState(() {});
+        },
+      ),
     );
   }
 
@@ -42,20 +64,25 @@ class ProdutosListPage extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.only(left: 8.0, right: 4.0),
           child: InkWell(
-            onTap: () {
+            onTap: () async {
               GetIt.I.get<ProdutoStore>().inicializarForm(produtos[index]);
-              Navigator.pushReplacement(
+              await Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => ProdutosCRUDPage(),
                 ),
               );
+              setState(() {});
             },
             child: Padding(
               padding: EdgeInsets.only(bottom: 8.0),
-              child: _listTile(
-                context,
-                produtos[index],
+              child: DismissiblePEF(
+                titulo: 'Remover',
+                icone: Icons.delete,
+                child: _listTile(
+                  context,
+                  produtos[index],
+                ),
               ),
             ),
           ),

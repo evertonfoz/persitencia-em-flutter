@@ -1,5 +1,6 @@
 import 'package:ec_delivery/features/boasvindas/data/datasources/boasvindas_datasource.dart';
 import 'package:ec_delivery/features/produtos/presentation/pages/crud.dart';
+import 'package:ec_delivery/features/produtos/presentation/pages/listagem.dart';
 import 'package:ec_delivery/shared/presentation/components/buttons/default_text_button.dart';
 import 'package:ec_delivery/shared/presentation/components/checkbox/checkbox.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ class BottomRowBoasVindasWidget extends StatelessWidget {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (context) => ProdutosCRUDPage(),
+                builder: (context) => ProdutosListPage(),
               ),
             );
           },

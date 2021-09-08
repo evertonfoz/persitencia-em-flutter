@@ -8,6 +8,10 @@ class ProdutosCRUDPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: InkWell(
+          child: Icon(Icons.arrow_back),
+          onTap: () => Navigator.of(context).pop(),
+        ),
         title: InkWell(
           child: Text('Dados do Produto'),
           onLongPress: () async {

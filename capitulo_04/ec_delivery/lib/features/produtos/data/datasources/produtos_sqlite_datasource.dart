@@ -32,19 +32,30 @@ class ProdutosSQLiteDatasource {
     );
   }
 
-  Future create(ProdutoModel produto) async {
+  Future save(ProdutoModel produto) async {
+    if (produto.produtoID == null) {
+      await _create(produto);
+    } else {
+      await _update(produto);
+    }
+  }
+
+  Future _create(ProdutoModel produto) async {
     try {
       final Database db = await _getDatabase();
 
-      produto.produtoID =
-          await db.rawInsert('''insert into $PRODUTOS_TABLE_NAME(
-                $PRODUTOS_COLUMN_NOME, $PRODUTOS_COLUMN_DESCRICAO,
-                $PRODUTOS_COLUMN_VALOR) 
-              VALUES(
-                '${produto.nome}', '${produto.descricao}', 
-                ${produto.valor}
-              )
-          ''');
+      produto.produtoID = await db.insert(
+        PRODUTOS_TABLE_NAME,
+        produto.toMap(),
+      );
+      // await db.rawInsert('''insert into $PRODUTOS_TABLE_NAME(
+      //       $PRODUTOS_COLUMN_NOME, $PRODUTOS_COLUMN_DESCRICAO,
+      //       $PRODUTOS_COLUMN_VALOR)
+      //     VALUES(
+      //       '${produto.nome}', '${produto.descricao}',
+      //       ${produto.valor}
+      //     )
+      // ''');
     } catch (ex) {
       return;
     }
@@ -54,8 +65,8 @@ class ProdutosSQLiteDatasource {
     try {
       final Database db = await _getDatabase();
 
-      final List<Map<String, dynamic>> produtosMap =
-          await db.query(PRODUTOS_TABLE_NAME);
+      final List<Map<String, dynamic>> produtosMap = await db
+          .query(PRODUTOS_TABLE_NAME, orderBy: '$PRODUTOS_COLUMN_NOME ASC');
 
       return List.generate(
         produtosMap.length,
@@ -71,25 +82,30 @@ class ProdutosSQLiteDatasource {
     }
   }
 
-  Future update(ProdutoModel produto) async {
+  Future _update(ProdutoModel produto) async {
     try {
       final Database db = await _getDatabase();
 
       await db.update(
         PRODUTOS_TABLE_NAME,
         produto.toMap(),
-        where: "id = ?",
-        whereArgs: [model.id],
+        where: '$PRODUTOS_COLUMN_PRODUTOID = ?',
+        whereArgs: [produto.produtoID],
       );
-      produto.produtoID =
-          await db.rawInsert('''insert into $PRODUTOS_TABLE_NAME(
-                $PRODUTOS_COLUMN_NOME, $PRODUTOS_COLUMN_DESCRICAO,
-                $PRODUTOS_COLUMN_VALOR) 
-              VALUES(
-                '${produto.nome}', '${produto.descricao}', 
-                ${produto.valor}
-              )
-          ''');
+    } catch (ex) {
+      return;
+    }
+  }
+
+  Future delete(int produtoID) async {
+    try {
+      final Database db = await _getDatabase();
+
+      await db.delete(
+        PRODUTOS_TABLE_NAME,
+        where: "produtoID = ?",
+        whereArgs: [produtoID],
+      );
     } catch (ex) {
       return;
     }
