@@ -2,6 +2,7 @@ import 'package:ec_delivery/core/presentation/constants/urls.dart';
 import 'package:ec_delivery/features/produtos/presentation/mobx_stores/produto_store.dart';
 import 'package:ec_delivery/shared/presentation/components/circleavatar/circleavatar.dart';
 import 'package:ec_delivery/shared/presentation/components/dismissible/dismissible.dart';
+import 'package:ec_delivery/shared/presentation/components/snackbar/snackbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -79,10 +80,23 @@ class _ProdutosListPageState extends State<ProdutosListPage> {
               child: DismissiblePEF(
                 titulo: 'Remover',
                 icone: Icons.delete,
+                tituloConfirmacao: 'Confirmação',
+                conteudoConfirmacao:
+                    'Toque OK para remover o produto ${produtos[index].nome.toUpperCase()}',
                 child: _listTile(
                   context,
                   produtos[index],
                 ),
+                onDismissed: () async {
+                  await ProdutosSQLiteDatasource()
+                      .delete(produtos[index].produtoID!);
+                  showBottomSnackBar(
+                    context: context,
+                    title: 'Sucesso',
+                    content:
+                        'O produto ${produtos[index].nome.toUpperCase()} foi removido',
+                  );
+                },
               ),
             ),
           ),

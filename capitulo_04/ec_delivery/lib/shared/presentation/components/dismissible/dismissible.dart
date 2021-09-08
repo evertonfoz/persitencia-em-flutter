@@ -5,11 +5,17 @@ class DismissiblePEF extends StatelessWidget {
   final Widget child;
   final String titulo;
   final IconData icone;
+  final String tituloConfirmacao;
+  final String conteudoConfirmacao;
+  final VoidCallback onDismissed;
 
   const DismissiblePEF({
     required this.child,
     required this.titulo,
     required this.icone,
+    required this.tituloConfirmacao,
+    required this.conteudoConfirmacao,
+    required this.onDismissed,
   });
 
   @override
@@ -45,12 +51,24 @@ class DismissiblePEF extends StatelessWidget {
           context: context,
           builder: (context) {
             return AlertDialog(
-              title: Text('Delete'),
-              content: Text('Delete'),
+              title: Text(
+                tituloConfirmacao,
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black),
+              ),
+              content: Text(
+                conteudoConfirmacao,
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.black,
+                ),
+              ),
               actions: <Widget>[
                 DefaultTextButton(
                   text: 'Cancelar',
-                  textColor: Colors.blue.shade500,
+                  textColor: Colors.blue.shade900,
                   onPressed: () => Navigator.of(
                     context,
                   ).pop(false),
@@ -61,63 +79,12 @@ class DismissiblePEF extends StatelessWidget {
                     onPressed: () => Navigator.of(
                           context,
                         ).pop(true)),
-                // FlatButton(
-                //   onPressed: () {
-                //     // Navigator.pop(context, false);
-
-                //   },
-                //   child: Text('No'),
-                // ),
-                // FlatButton(
-                //   onPressed: () {
-                //     // Navigator.pop(context, true);
-                //     Navigator.of(
-                //       context,
-                //       // rootNavigator: true,
-                //     ).pop(true);
-                //   },
-                //   child: Text('Yes'),
-                // ),
               ],
             );
           },
         );
       },
+      onDismissed: (direction) => onDismissed(),
     );
   }
 }
-
-                // confirmDismiss: (direction) {
-                //   return showDialog(
-                //     context: context,
-                //     builder: (context) {
-                //       return CupertinoAlertDialog(
-                //         title: Text('Delete'),
-                //         content: Text('Delete'),
-                //         actions: <Widget>[
-                //           FlatButton(
-                //             onPressed: () {
-                //               // Navigator.pop(context, false);
-                //               Navigator.of(
-                //                 context,
-                //                 // rootNavigator: true,
-                //               ).pop(false);
-                //             },
-                //             child: Text('No'),
-                //           ),
-                //           FlatButton(
-                //             onPressed: () {
-                //               // Navigator.pop(context, true);
-                //               Navigator.of(
-                //                 context,
-                //                 // rootNavigator: true,
-                //               ).pop(true);
-                //             },
-                //             child: Text('Yes'),
-                //           ),
-                //         ],
-                //       );
-                //     },
-                //   );
-                // },
-                
